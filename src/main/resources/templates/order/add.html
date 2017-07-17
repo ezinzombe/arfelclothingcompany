@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Add Drug Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" th:href ="@{/css/bootstrap.min.css}"/>
+    <script	src="/js/jquery.js"></script>
+    <script	src="/js/bootstrap.min.js"></script>
+    <th:block th:include="fragments/header :: header"></th:block>
+</head>
+<body>
+
+<br/>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form class="form-horizontal" th:object="${drug}" th:action="@{/drug/add}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <h2>Drug Stock Add</h2>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label	th:if="${#fields.hasErrors('pharmacyName')}" th:errors="*{pharmacyName}"
+                                  class="validation-message">Pharmacy Name</label>
+                        <input type="text" th:field="*{pharmacyName}"
+                               placeholder="Pharmacy Name" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label	th:if="${#fields.hasErrors('pharmacyId')}" th:errors="*{pharmacyId}"
+                                  class="validation-message">Pharmacy ID</label>
+                        <input type="text" th:field="*{pharmacyId}"
+                               placeholder="Pharmacy Registration Number" class="form-control" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('physicalAddress')}" th:errors="*{physicalAddress}"
+                               class="validation-message"></label>
+                        <input type="text" th:field="*{physicalAddress}" placeholder="Pharmacy Location"
+                               class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
+                               class="validation-message"></label>
+                        <input type="text" th:field="*{phoneNumber}" placeholder="Pharmacy Phone Number"
+                               class="form-control" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('drugName')}" th:errors="*{drugName}"
+                               class="validation-message"> Drug Name</label>
+                        <input type="text" th:field="*{drugName}" placeholder="Drug Name"
+                               class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('drugClass')}" th:errors="*{drugClass}"
+                               class="validation-message"> Drug Name</label>
+                        <input type="text" th:field="*{drugClass}" placeholder="Drug Class"
+                               class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('formulation')}" th:errors="*{formulation}"
+                               class="validation-message"> Drug Name</label>
+                        <input type="text" th:field="*{formulation}" placeholder="Drug formulation"
+                               class="form-control" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">Add Drug</button>
+                    </div>
+                </div>
+
+                <span th:utext="${successMessage}"></span>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</br>
+<div th:replace="fragments/footer :: footer"/>
+</html>

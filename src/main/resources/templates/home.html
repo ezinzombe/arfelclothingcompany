@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<title>Home Page</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link rel="stylesheet" th:href ="@{/css/bootstrap.min.css}"/>
+	<script	src="/js/jquery.js"></script>
+	<script	src="/js/bootstrap.min.js"></script>
+	<th:block th:include="fragments/header :: header"></th:block>
+</head>
+<body>
+<br/>
+<br/>
+
+
+	<div sec:authorize="hasAuthority('ADMIN')">
+
+		<table class="table table-striped table-inverse">
+			<br/>
+			<span th:utext="${successMessage}" class="text-success"></span>
+			<caption>Arfel Clothing Company Users</caption>
+			<thead>
+			<tr style="background-color: rgb(76,63,57)">
+				<th bgcolor="white" scope="col">First Name</th>
+				<th bgcolor="white" scope="col">Last Name</th>
+				<th bgcolor="white" scope="col">Email</th>
+				<th bgcolor="white" scope="col">Active</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="user : ${userList}">
+				<td th:text="${user.name}">George</td>
+				<td th:text="${user.lastName}">Washington</td>
+				<td th:text="${user.email}">gwash</td>
+				<td th:text="${user.isActive}">Yes</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+<div sec:authorize="hasAuthority('ADMIN')">
+	<p>
+		In 1984 Arfel opened its first shop on the Paseo de Gracia (Barcelona).
+		A year later, the company had five outlets in Barcelona and from this point on,
+		with the opening of a shop in Valencia; it began its expansion in the domestic market.
+		What was initially a small team had begun to grow: by 1988,
+		the company had 13 sales outlets in Spain.
+
+	</p>
+</div>
+</body>
+</br>
+<div th:replace="fragments/footer :: footer"/>
+</html>
